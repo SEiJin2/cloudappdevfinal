@@ -2,6 +2,6 @@ venv/
 .secret
 bin/backend/migrations/
 bin/backend/__pycache__/
-bin/backend/db.sqlite3
-bin/backend/restapi/__pycache__/
-bin/backend/restapi/migrations/
+bin/db.sqlite3
+bin/restapi/__pycache__/
+bin/restapi/migrations/
