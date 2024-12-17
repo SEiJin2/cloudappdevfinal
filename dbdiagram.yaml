@@ -1,0 +1,95 @@
+Table User {
+  id int [pk, increment]
+  username varchar
+  email varchar
+  password_hash varchar
+  first_name varchar
+  last_name varchar
+  created_at datetime
+  updated_at datetime
+}
+
+Table Event {
+  id int [pk, increment]
+  title varchar
+  description text
+  date_time datetime
+  venue_id int
+  created_by int
+  created_at datetime
+  updated_at datetime
+}
+
+Table Registration {
+  id int [pk, increment]
+  user_id int
+  event_id int
+  registration_date datetime
+  ticket_type varchar
+  number_of_tickets int
+}
+
+Table Notification {
+  id int [pk, increment]
+  user_id int
+  event_id int
+  message text
+  sent_at datetime
+}
+
+Table Payment {
+  id int [pk, increment]
+  registration_id int
+  amount decimal
+  status varchar
+  payment_date datetime
+}
+
+Table Venue {
+  id int [pk, increment]
+  name varchar
+  address varchar
+  capacity int
+  contact_info varchar
+}
+
+Table Ticket {
+  id int [pk, increment]
+  event_id int
+  type varchar
+  price decimal
+  availability int
+}
+
+Table Review {
+  id int [pk, increment]
+  event_id int
+  user_id int
+  rating int
+  comment text
+  created_at datetime
+}
+
+Table Category {
+  id int [pk, increment]
+  name varchar
+  description text
+}
+
+Table EventCategory {
+  id int [pk, increment]
+  event_id int
+  category_id int
+}
+
+Ref: Registration.user_id > User.id
+Ref: Registration.event_id > Event.id
+Ref: Notification.user_id > User.id
+Ref: Notification.event_id > Event.id
+Ref: Payment.registration_id > Registration.id
+Ref: Ticket.event_id > Event.id
+Ref: Review.event_id > Event.id
+Ref: Review.user_id > User.id
+Ref: EventCategory.event_id > Event.id
+Ref: EventCategory.category_id > Category.id
+Ref: Event.venue_id > Venue.id
